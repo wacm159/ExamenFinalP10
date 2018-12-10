@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="cf1ac1a2aacc478286159cdcc680e033" Name="Diagram1">
+        <EntityTypeShape EntityType="DonacionesModel.calculos" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DonacionesModel.continente" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DonacionesModel.donadores" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DonacionesModel.gasto" Width="1.5" PointX="3" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DonacionesModel.gasto1" Width="1.5" PointX="3" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DonacionesModel.gasto2" Width="1.5" PointX="3" PointY="10.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DonacionesModel.pais" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DonacionesModel.porcentajes" Width="1.5" PointX="0.75" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DonacionesModel.productos" Width="1.5" PointX="0.75" PointY="9.875" IsExpanded="true" />
+        <AssociationConnector Association="DonacionesModel.FK_calculos_donadores" ManuallyRouted="false" />
+        <AssociationConnector Association="DonacionesModel.FK_calculos_gasto" ManuallyRouted="false" />
+        <AssociationConnector Association="DonacionesModel.FK_calculos_gasto1" ManuallyRouted="false" />
+        <AssociationConnector Association="DonacionesModel.FK_calculos_gasto2" ManuallyRouted="false" />
+        <AssociationConnector Association="DonacionesModel.FK_donadores_continente" ManuallyRouted="false" />
+        <AssociationConnector Association="DonacionesModel.FK_donadores_pais" ManuallyRouted="false" />
+        <AssociationConnector Association="DonacionesModel.FK_donadores_porcentajes" ManuallyRouted="false" />
+        <AssociationConnector Association="DonacionesModel.FK_donadores_productos" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

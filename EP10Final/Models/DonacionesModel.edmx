@@ -1,0 +1,572 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DonacionesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="calculos">
+          <Key>
+            <PropertyRef Name="id_calculo" />
+          </Key>
+          <Property Name="id_calculo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_donador_calculos" Type="int" Nullable="false" />
+          <Property Name="id_gasto_calculos" Type="int" Nullable="false" />
+          <Property Name="id_gasto1_calculos" Type="int" Nullable="false" />
+          <Property Name="id_gasto2_calculos" Type="int" Nullable="false" />
+          <Property Name="fecha" Type="date" Nullable="false" />
+          <Property Name="total" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="continente">
+          <Key>
+            <PropertyRef Name="id_continente" />
+          </Key>
+          <Property Name="id_continente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="donadores">
+          <Key>
+            <PropertyRef Name="id_donador" />
+          </Key>
+          <Property Name="id_donador" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="aporte_pib" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="id_porcentaje_donador" Type="int" Nullable="false" />
+          <Property Name="id_producto_donador" Type="int" Nullable="false" />
+          <Property Name="fecha" Type="date" Nullable="false" />
+          <Property Name="id_pais_donador" Type="int" Nullable="false" />
+          <Property Name="id_continente_donador" Type="int" Nullable="false" />
+          <Property Name="total" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="gasto">
+          <Key>
+            <PropertyRef Name="id_gasto" />
+          </Key>
+          <Property Name="id_gasto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="gasto1">
+          <Key>
+            <PropertyRef Name="id_gasto1" />
+          </Key>
+          <Property Name="id_gasto1" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="gasto2">
+          <Key>
+            <PropertyRef Name="id_gasto2" />
+          </Key>
+          <Property Name="id_gasto2" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="pais">
+          <Key>
+            <PropertyRef Name="id_pais" />
+          </Key>
+          <Property Name="id_pais" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="porcentajes">
+          <Key>
+            <PropertyRef Name="id_porcentaje" />
+          </Key>
+          <Property Name="id_porcentaje" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="productos">
+          <Key>
+            <PropertyRef Name="id_producto" />
+          </Key>
+          <Property Name="id_producto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="detalle" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_calculos_donadores">
+          <End Role="donadores" Type="Self.donadores" Multiplicity="1" />
+          <End Role="calculos" Type="Self.calculos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="donadores">
+              <PropertyRef Name="id_donador" />
+            </Principal>
+            <Dependent Role="calculos">
+              <PropertyRef Name="id_donador_calculos" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_calculos_gasto">
+          <End Role="gasto" Type="Self.gasto" Multiplicity="1" />
+          <End Role="calculos" Type="Self.calculos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gasto">
+              <PropertyRef Name="id_gasto" />
+            </Principal>
+            <Dependent Role="calculos">
+              <PropertyRef Name="id_gasto_calculos" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_calculos_gasto1">
+          <End Role="gasto1" Type="Self.gasto1" Multiplicity="1" />
+          <End Role="calculos" Type="Self.calculos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gasto1">
+              <PropertyRef Name="id_gasto1" />
+            </Principal>
+            <Dependent Role="calculos">
+              <PropertyRef Name="id_gasto1_calculos" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_calculos_gasto2">
+          <End Role="gasto2" Type="Self.gasto2" Multiplicity="1" />
+          <End Role="calculos" Type="Self.calculos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gasto2">
+              <PropertyRef Name="id_gasto2" />
+            </Principal>
+            <Dependent Role="calculos">
+              <PropertyRef Name="id_gasto2_calculos" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_donadores_continente">
+          <End Role="continente" Type="Self.continente" Multiplicity="1" />
+          <End Role="donadores" Type="Self.donadores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="continente">
+              <PropertyRef Name="id_continente" />
+            </Principal>
+            <Dependent Role="donadores">
+              <PropertyRef Name="id_continente_donador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_donadores_pais">
+          <End Role="pais" Type="Self.pais" Multiplicity="1" />
+          <End Role="donadores" Type="Self.donadores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pais">
+              <PropertyRef Name="id_pais" />
+            </Principal>
+            <Dependent Role="donadores">
+              <PropertyRef Name="id_pais_donador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_donadores_porcentajes">
+          <End Role="porcentajes" Type="Self.porcentajes" Multiplicity="1" />
+          <End Role="donadores" Type="Self.donadores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="porcentajes">
+              <PropertyRef Name="id_porcentaje" />
+            </Principal>
+            <Dependent Role="donadores">
+              <PropertyRef Name="id_porcentaje_donador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_donadores_productos">
+          <End Role="productos" Type="Self.productos" Multiplicity="1" />
+          <End Role="donadores" Type="Self.donadores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productos">
+              <PropertyRef Name="id_producto" />
+            </Principal>
+            <Dependent Role="donadores">
+              <PropertyRef Name="id_producto_donador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DonacionesModelStoreContainer">
+          <EntitySet Name="calculos" EntityType="Self.calculos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="continente" EntityType="Self.continente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="donadores" EntityType="Self.donadores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="gasto" EntityType="Self.gasto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="gasto1" EntityType="Self.gasto1" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="gasto2" EntityType="Self.gasto2" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pais" EntityType="Self.pais" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="porcentajes" EntityType="Self.porcentajes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="productos" EntityType="Self.productos" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_calculos_donadores" Association="Self.FK_calculos_donadores">
+            <End Role="donadores" EntitySet="donadores" />
+            <End Role="calculos" EntitySet="calculos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_calculos_gasto" Association="Self.FK_calculos_gasto">
+            <End Role="gasto" EntitySet="gasto" />
+            <End Role="calculos" EntitySet="calculos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_calculos_gasto1" Association="Self.FK_calculos_gasto1">
+            <End Role="gasto1" EntitySet="gasto1" />
+            <End Role="calculos" EntitySet="calculos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_calculos_gasto2" Association="Self.FK_calculos_gasto2">
+            <End Role="gasto2" EntitySet="gasto2" />
+            <End Role="calculos" EntitySet="calculos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_donadores_continente" Association="Self.FK_donadores_continente">
+            <End Role="continente" EntitySet="continente" />
+            <End Role="donadores" EntitySet="donadores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_donadores_pais" Association="Self.FK_donadores_pais">
+            <End Role="pais" EntitySet="pais" />
+            <End Role="donadores" EntitySet="donadores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_donadores_porcentajes" Association="Self.FK_donadores_porcentajes">
+            <End Role="porcentajes" EntitySet="porcentajes" />
+            <End Role="donadores" EntitySet="donadores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_donadores_productos" Association="Self.FK_donadores_productos">
+            <End Role="productos" EntitySet="productos" />
+            <End Role="donadores" EntitySet="donadores" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DonacionesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="calculos">
+          <Key>
+            <PropertyRef Name="id_calculo" />
+          </Key>
+          <Property Name="id_calculo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_donador_calculos" Type="Int32" Nullable="false" />
+          <Property Name="id_gasto_calculos" Type="Int32" Nullable="false" />
+          <Property Name="id_gasto1_calculos" Type="Int32" Nullable="false" />
+          <Property Name="id_gasto2_calculos" Type="Int32" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="total" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <NavigationProperty Name="donadores" Relationship="Self.FK_calculos_donadores" FromRole="calculos" ToRole="donadores" />
+          <NavigationProperty Name="gasto" Relationship="Self.FK_calculos_gasto" FromRole="calculos" ToRole="gasto" />
+          <NavigationProperty Name="gasto1" Relationship="Self.FK_calculos_gasto1" FromRole="calculos" ToRole="gasto1" />
+          <NavigationProperty Name="gasto2" Relationship="Self.FK_calculos_gasto2" FromRole="calculos" ToRole="gasto2" />
+        </EntityType>
+        <EntityType Name="continente">
+          <Key>
+            <PropertyRef Name="id_continente" />
+          </Key>
+          <Property Name="id_continente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="donadores" Relationship="Self.FK_donadores_continente" FromRole="continente" ToRole="donadores" />
+        </EntityType>
+        <EntityType Name="donadores">
+          <Key>
+            <PropertyRef Name="id_donador" />
+          </Key>
+          <Property Name="id_donador" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="aporte_pib" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="id_porcentaje_donador" Type="Int32" Nullable="false" />
+          <Property Name="id_producto_donador" Type="Int32" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="id_pais_donador" Type="Int32" Nullable="false" />
+          <Property Name="id_continente_donador" Type="Int32" Nullable="false" />
+          <Property Name="total" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <NavigationProperty Name="calculos" Relationship="Self.FK_calculos_donadores" FromRole="donadores" ToRole="calculos" />
+          <NavigationProperty Name="continente" Relationship="Self.FK_donadores_continente" FromRole="donadores" ToRole="continente" />
+          <NavigationProperty Name="pais" Relationship="Self.FK_donadores_pais" FromRole="donadores" ToRole="pais" />
+          <NavigationProperty Name="porcentajes" Relationship="Self.FK_donadores_porcentajes" FromRole="donadores" ToRole="porcentajes" />
+          <NavigationProperty Name="productos" Relationship="Self.FK_donadores_productos" FromRole="donadores" ToRole="productos" />
+        </EntityType>
+        <EntityType Name="gasto">
+          <Key>
+            <PropertyRef Name="id_gasto" />
+          </Key>
+          <Property Name="id_gasto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="calculos" Relationship="Self.FK_calculos_gasto" FromRole="gasto" ToRole="calculos" />
+        </EntityType>
+        <EntityType Name="gasto1">
+          <Key>
+            <PropertyRef Name="id_gasto1" />
+          </Key>
+          <Property Name="id_gasto1" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="calculos" Relationship="Self.FK_calculos_gasto1" FromRole="gasto1" ToRole="calculos" />
+        </EntityType>
+        <EntityType Name="gasto2">
+          <Key>
+            <PropertyRef Name="id_gasto2" />
+          </Key>
+          <Property Name="id_gasto2" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="calculos" Relationship="Self.FK_calculos_gasto2" FromRole="gasto2" ToRole="calculos" />
+        </EntityType>
+        <EntityType Name="pais">
+          <Key>
+            <PropertyRef Name="id_pais" />
+          </Key>
+          <Property Name="id_pais" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="donadores" Relationship="Self.FK_donadores_pais" FromRole="pais" ToRole="donadores" />
+        </EntityType>
+        <EntityType Name="porcentajes">
+          <Key>
+            <PropertyRef Name="id_porcentaje" />
+          </Key>
+          <Property Name="id_porcentaje" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="donadores" Relationship="Self.FK_donadores_porcentajes" FromRole="porcentajes" ToRole="donadores" />
+        </EntityType>
+        <EntityType Name="productos">
+          <Key>
+            <PropertyRef Name="id_producto" />
+          </Key>
+          <Property Name="id_producto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="detalle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="donadores" Relationship="Self.FK_donadores_productos" FromRole="productos" ToRole="donadores" />
+        </EntityType>
+        <Association Name="FK_calculos_donadores">
+          <End Role="donadores" Type="Self.donadores" Multiplicity="1" />
+          <End Role="calculos" Type="Self.calculos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="donadores">
+              <PropertyRef Name="id_donador" />
+            </Principal>
+            <Dependent Role="calculos">
+              <PropertyRef Name="id_donador_calculos" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_calculos_gasto">
+          <End Role="gasto" Type="Self.gasto" Multiplicity="1" />
+          <End Role="calculos" Type="Self.calculos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gasto">
+              <PropertyRef Name="id_gasto" />
+            </Principal>
+            <Dependent Role="calculos">
+              <PropertyRef Name="id_gasto_calculos" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_calculos_gasto1">
+          <End Role="gasto1" Type="Self.gasto1" Multiplicity="1" />
+          <End Role="calculos" Type="Self.calculos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gasto1">
+              <PropertyRef Name="id_gasto1" />
+            </Principal>
+            <Dependent Role="calculos">
+              <PropertyRef Name="id_gasto1_calculos" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_calculos_gasto2">
+          <End Role="gasto2" Type="Self.gasto2" Multiplicity="1" />
+          <End Role="calculos" Type="Self.calculos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="gasto2">
+              <PropertyRef Name="id_gasto2" />
+            </Principal>
+            <Dependent Role="calculos">
+              <PropertyRef Name="id_gasto2_calculos" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_donadores_continente">
+          <End Role="continente" Type="Self.continente" Multiplicity="1" />
+          <End Role="donadores" Type="Self.donadores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="continente">
+              <PropertyRef Name="id_continente" />
+            </Principal>
+            <Dependent Role="donadores">
+              <PropertyRef Name="id_continente_donador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_donadores_pais">
+          <End Role="pais" Type="Self.pais" Multiplicity="1" />
+          <End Role="donadores" Type="Self.donadores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pais">
+              <PropertyRef Name="id_pais" />
+            </Principal>
+            <Dependent Role="donadores">
+              <PropertyRef Name="id_pais_donador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_donadores_porcentajes">
+          <End Role="porcentajes" Type="Self.porcentajes" Multiplicity="1" />
+          <End Role="donadores" Type="Self.donadores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="porcentajes">
+              <PropertyRef Name="id_porcentaje" />
+            </Principal>
+            <Dependent Role="donadores">
+              <PropertyRef Name="id_porcentaje_donador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_donadores_productos">
+          <End Role="productos" Type="Self.productos" Multiplicity="1" />
+          <End Role="donadores" Type="Self.donadores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="productos">
+              <PropertyRef Name="id_producto" />
+            </Principal>
+            <Dependent Role="donadores">
+              <PropertyRef Name="id_producto_donador" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DonacionesEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="calculos" EntityType="Self.calculos" />
+          <EntitySet Name="continente" EntityType="Self.continente" />
+          <EntitySet Name="donadores" EntityType="Self.donadores" />
+          <EntitySet Name="gasto" EntityType="Self.gasto" />
+          <EntitySet Name="gasto1" EntityType="Self.gasto1" />
+          <EntitySet Name="gasto2" EntityType="Self.gasto2" />
+          <EntitySet Name="pais" EntityType="Self.pais" />
+          <EntitySet Name="porcentajes" EntityType="Self.porcentajes" />
+          <EntitySet Name="productos" EntityType="Self.productos" />
+          <AssociationSet Name="FK_calculos_donadores" Association="Self.FK_calculos_donadores">
+            <End Role="donadores" EntitySet="donadores" />
+            <End Role="calculos" EntitySet="calculos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_calculos_gasto" Association="Self.FK_calculos_gasto">
+            <End Role="gasto" EntitySet="gasto" />
+            <End Role="calculos" EntitySet="calculos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_calculos_gasto1" Association="Self.FK_calculos_gasto1">
+            <End Role="gasto1" EntitySet="gasto1" />
+            <End Role="calculos" EntitySet="calculos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_calculos_gasto2" Association="Self.FK_calculos_gasto2">
+            <End Role="gasto2" EntitySet="gasto2" />
+            <End Role="calculos" EntitySet="calculos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_donadores_continente" Association="Self.FK_donadores_continente">
+            <End Role="continente" EntitySet="continente" />
+            <End Role="donadores" EntitySet="donadores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_donadores_pais" Association="Self.FK_donadores_pais">
+            <End Role="pais" EntitySet="pais" />
+            <End Role="donadores" EntitySet="donadores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_donadores_porcentajes" Association="Self.FK_donadores_porcentajes">
+            <End Role="porcentajes" EntitySet="porcentajes" />
+            <End Role="donadores" EntitySet="donadores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_donadores_productos" Association="Self.FK_donadores_productos">
+            <End Role="productos" EntitySet="productos" />
+            <End Role="donadores" EntitySet="donadores" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DonacionesModelStoreContainer" CdmEntityContainer="DonacionesEntities">
+          <EntitySetMapping Name="calculos">
+            <EntityTypeMapping TypeName="DonacionesModel.calculos">
+              <MappingFragment StoreEntitySet="calculos">
+                <ScalarProperty Name="id_calculo" ColumnName="id_calculo" />
+                <ScalarProperty Name="id_donador_calculos" ColumnName="id_donador_calculos" />
+                <ScalarProperty Name="id_gasto_calculos" ColumnName="id_gasto_calculos" />
+                <ScalarProperty Name="id_gasto1_calculos" ColumnName="id_gasto1_calculos" />
+                <ScalarProperty Name="id_gasto2_calculos" ColumnName="id_gasto2_calculos" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="total" ColumnName="total" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="continente">
+            <EntityTypeMapping TypeName="DonacionesModel.continente">
+              <MappingFragment StoreEntitySet="continente">
+                <ScalarProperty Name="id_continente" ColumnName="id_continente" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="donadores">
+            <EntityTypeMapping TypeName="DonacionesModel.donadores">
+              <MappingFragment StoreEntitySet="donadores">
+                <ScalarProperty Name="id_donador" ColumnName="id_donador" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="aporte_pib" ColumnName="aporte_pib" />
+                <ScalarProperty Name="id_porcentaje_donador" ColumnName="id_porcentaje_donador" />
+                <ScalarProperty Name="id_producto_donador" ColumnName="id_producto_donador" />
+                <ScalarProperty Name="fecha" ColumnName="fecha" />
+                <ScalarProperty Name="id_pais_donador" ColumnName="id_pais_donador" />
+                <ScalarProperty Name="id_continente_donador" ColumnName="id_continente_donador" />
+                <ScalarProperty Name="total" ColumnName="total" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gasto">
+            <EntityTypeMapping TypeName="DonacionesModel.gasto">
+              <MappingFragment StoreEntitySet="gasto">
+                <ScalarProperty Name="id_gasto" ColumnName="id_gasto" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gasto1">
+            <EntityTypeMapping TypeName="DonacionesModel.gasto1">
+              <MappingFragment StoreEntitySet="gasto1">
+                <ScalarProperty Name="id_gasto1" ColumnName="id_gasto1" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="gasto2">
+            <EntityTypeMapping TypeName="DonacionesModel.gasto2">
+              <MappingFragment StoreEntitySet="gasto2">
+                <ScalarProperty Name="id_gasto2" ColumnName="id_gasto2" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pais">
+            <EntityTypeMapping TypeName="DonacionesModel.pais">
+              <MappingFragment StoreEntitySet="pais">
+                <ScalarProperty Name="id_pais" ColumnName="id_pais" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="porcentajes">
+            <EntityTypeMapping TypeName="DonacionesModel.porcentajes">
+              <MappingFragment StoreEntitySet="porcentajes">
+                <ScalarProperty Name="id_porcentaje" ColumnName="id_porcentaje" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="productos">
+            <EntityTypeMapping TypeName="DonacionesModel.productos">
+              <MappingFragment StoreEntitySet="productos">
+                <ScalarProperty Name="id_producto" ColumnName="id_producto" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="detalle" ColumnName="detalle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
