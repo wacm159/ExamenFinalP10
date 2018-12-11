@@ -50,17 +50,52 @@ namespace EP10Final.Controllers
         // GET: donadoresMVC/Details/5
         public ActionResult Details(int? id)
         {
+            //if (id == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
+            //donadores donadores = db.donadores.Find(id);
+            //if (donadores == null)
+            //{
+            //    return HttpNotFound();
+            //}
+            //return View(donadores);
+            donadores alumno = new donadores();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            donadores donadores = db.donadores.Find(id);
-            if (donadores == null)
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:62116/api/");
+                //GET GetAlumnos
+
+                //Obtiene asincronamente y espera hasta obtenet la data
+
+                var responseTask = client.GetAsync("donadores/" + id);
+                responseTask.Wait();
+                var result = responseTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    //leer todo el contenido y parsearlo a lista Alumno
+                    var leer = result.Content.ReadAsAsync<donadores>();
+                    alumno = leer.Result;
+                }
+                else
+                {
+                    alumno = null;
+                    ModelState.AddModelError(string.Empty, "Error....");
+                }
+            }
+
+            if (alumno == null)
             {
                 return HttpNotFound();
             }
-            return View(donadores);
+            return View(alumno);
         }
+
+    
 
         // GET: donadoresMVC/Detalles/5
         public ActionResult Detalle(int? id)

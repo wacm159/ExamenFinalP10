@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
 using EP10Final.Models;
@@ -17,8 +18,31 @@ namespace EP10Final.Controllers
         // GET: calculosMVC
         public ActionResult Index()
         {
-            var calculos = db.calculos.Include(c => c.donadores).Include(c => c.gasto).Include(c => c.gasto1).Include(c => c.gasto2);
-            return View(calculos.ToList());
+            //var calculos = db.calculos.Include(c => c.donadores).Include(c => c.gasto).Include(c => c.gasto1).Include(c => c.gasto2);
+            //return View(calculos.ToList());
+            IEnumerable<calculos> alumno = null;
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:62116/api/");
+                //GET ALUMNOS
+                //obtiene asincronamente y espera hasta obetener la data
+                var responseTask = client.GetAsync("calculosapi");
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var leer = result.Content.ReadAsAsync<IList<calculos>>();
+                    leer.Wait();
+                    alumno = leer.Result;
+                }
+                else
+                {
+                    alumno = Enumerable.Empty<calculos>();
+                    ModelState.AddModelError(string.Empty, "Error .... Try Again");
+                }
+            }
+            return View(alumno.ToList());
         }
 
         // GET: calculosMVC/Details/5

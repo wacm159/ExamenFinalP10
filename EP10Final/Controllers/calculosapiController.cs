@@ -20,6 +20,7 @@ namespace EP10Final.Controllers
         public IQueryable<calculos> Getcalculos()
         {
             return db.calculos;
+            //return db.calculos.Include(t => t.fecha).Include(t => t.total).Include(t => t.donadores.id_donador);
         }
 
         // GET: api/calculosapi/5
