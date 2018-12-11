@@ -55,6 +55,16 @@ namespace EP10Final.Controllers
         {
             if (ModelState.IsValid)
             {
+                //if (calculos. == 1)
+                //{
+                //    donadores.total = ((donadores.aporte_pib * 5) / 100);
+                //}
+                //else
+                //{
+                //    donadores.total = ((donadores.aporte_pib * 10) / 100);
+                //}
+                calculos.total = 10000;
+                calculos.fecha = DateTime.Now;
                 db.calculos.Add(calculos);
                 db.SaveChanges();
                 return RedirectToAction("Index");

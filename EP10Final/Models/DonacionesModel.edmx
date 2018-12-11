@@ -14,8 +14,8 @@
           <Property Name="id_gasto_calculos" Type="int" Nullable="false" />
           <Property Name="id_gasto1_calculos" Type="int" Nullable="false" />
           <Property Name="id_gasto2_calculos" Type="int" Nullable="false" />
-          <Property Name="fecha" Type="date" Nullable="false" />
-          <Property Name="total" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="fecha" Type="datetime" />
+          <Property Name="total" Type="decimal" Precision="10" Scale="2" />
         </EntityType>
         <EntityType Name="continente">
           <Key>
@@ -33,10 +33,10 @@
           <Property Name="aporte_pib" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="id_porcentaje_donador" Type="int" Nullable="false" />
           <Property Name="id_producto_donador" Type="int" Nullable="false" />
-          <Property Name="fecha" Type="date" Nullable="false" />
+          <Property Name="fecha" Type="datetime" />
           <Property Name="id_pais_donador" Type="int" Nullable="false" />
           <Property Name="id_continente_donador" Type="int" Nullable="false" />
-          <Property Name="total" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="total" Type="decimal" Precision="10" Scale="2" />
         </EntityType>
         <EntityType Name="gasto">
           <Key>
@@ -233,8 +233,8 @@
           <Property Name="id_gasto_calculos" Type="Int32" Nullable="false" />
           <Property Name="id_gasto1_calculos" Type="Int32" Nullable="false" />
           <Property Name="id_gasto2_calculos" Type="Int32" Nullable="false" />
-          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="total" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="fecha" Type="DateTime" Precision="3" />
+          <Property Name="total" Type="Decimal" Precision="10" Scale="2" />
           <NavigationProperty Name="donadores" Relationship="Self.FK_calculos_donadores" FromRole="calculos" ToRole="donadores" />
           <NavigationProperty Name="gasto" Relationship="Self.FK_calculos_gasto" FromRole="calculos" ToRole="gasto" />
           <NavigationProperty Name="gasto1" Relationship="Self.FK_calculos_gasto1" FromRole="calculos" ToRole="gasto1" />
@@ -257,10 +257,10 @@
           <Property Name="aporte_pib" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="id_porcentaje_donador" Type="Int32" Nullable="false" />
           <Property Name="id_producto_donador" Type="Int32" Nullable="false" />
-          <Property Name="fecha" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fecha" Type="DateTime" Precision="3" />
           <Property Name="id_pais_donador" Type="Int32" Nullable="false" />
           <Property Name="id_continente_donador" Type="Int32" Nullable="false" />
-          <Property Name="total" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="total" Type="Decimal" Precision="10" Scale="2" />
           <NavigationProperty Name="calculos" Relationship="Self.FK_calculos_donadores" FromRole="donadores" ToRole="calculos" />
           <NavigationProperty Name="continente" Relationship="Self.FK_donadores_continente" FromRole="donadores" ToRole="continente" />
           <NavigationProperty Name="pais" Relationship="Self.FK_donadores_pais" FromRole="donadores" ToRole="pais" />

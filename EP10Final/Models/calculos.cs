@@ -19,8 +19,8 @@ namespace EP10Final.Models
         public int id_gasto_calculos { get; set; }
         public int id_gasto1_calculos { get; set; }
         public int id_gasto2_calculos { get; set; }
-        public System.DateTime fecha { get; set; }
-        public decimal total { get; set; }
+        public Nullable<System.DateTime> fecha { get; set; }
+        public Nullable<decimal> total { get; set; }
     
         public virtual donadores donadores { get; set; }
         public virtual gasto gasto { get; set; }

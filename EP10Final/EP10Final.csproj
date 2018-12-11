@@ -227,6 +227,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\calculosapiController.cs" />
     <Compile Include="Controllers\calculosMVCController.cs" />
     <Compile Include="Controllers\donadoresapiController.cs" />
     <Compile Include="Controllers\donadoresController.cs" />

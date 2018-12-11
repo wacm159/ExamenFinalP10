@@ -25,10 +25,10 @@ namespace EP10Final.Models
         public decimal aporte_pib { get; set; }
         public int id_porcentaje_donador { get; set; }
         public int id_producto_donador { get; set; }
-        public System.DateTime fecha { get; set; }
+        public Nullable<System.DateTime> fecha { get; set; }
         public int id_pais_donador { get; set; }
         public int id_continente_donador { get; set; }
-        public decimal total { get; set; }
+        public Nullable<decimal> total { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<calculos> calculos { get; set; }

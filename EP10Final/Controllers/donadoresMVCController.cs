@@ -28,7 +28,7 @@ namespace EP10Final.Controllers
                 //GET ALUMNOS
                 //obtiene asincronamente y espera hasta obetener la data
                 var responseTask = client.GetAsync("donadores");
-                //responseTask.Wait();
+                responseTask.Wait();
 
                 var result = responseTask.Result;
                 if (result.IsSuccessStatusCode)
@@ -81,8 +81,15 @@ namespace EP10Final.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (donadores.id_porcentaje_donador == 1)
+                {
+                    donadores.total = ((donadores.aporte_pib * 5) / 100);
+                }
+                else
+                {
+                    donadores.total = ((donadores.aporte_pib * 10) / 100);
+                }
                 donadores.fecha = DateTime.Now;
-                donadores.total = ((donadores.aporte_pib * 10) / 100);
                 db.donadores.Add(donadores);
                 db.SaveChanges();
                 return RedirectToAction("Index");
