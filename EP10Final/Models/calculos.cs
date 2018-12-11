@@ -11,20 +11,31 @@ namespace EP10Final.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class calculos
-    {
+    {   
+        [DisplayName("Donador ID")]
         public int id_calculo { get; set; }
+        [DisplayName("Donador")]
         public int id_donador_calculos { get; set; }
+        [DisplayName("Gasto ID")]
         public int id_gasto_calculos { get; set; }
+        [DisplayName("Publicidad ID")]
         public int id_gasto1_calculos { get; set; }
+        [DisplayName("Caja Chica ID")]
         public int id_gasto2_calculos { get; set; }
+        [DisplayName("Fecha Sistema")]
         public Nullable<System.DateTime> fecha { get; set; }
+        [DisplayName("Total con Descuentos")]
         public Nullable<decimal> total { get; set; }
     
         public virtual donadores donadores { get; set; }
+        [DisplayName("Gasto ID")]
         public virtual gasto gasto { get; set; }
+        [DisplayName("Publicidad ID")]
         public virtual gasto1 gasto1 { get; set; }
+        [DisplayName("Caja Chica ID")]
         public virtual gasto2 gasto2 { get; set; }
     }
 }

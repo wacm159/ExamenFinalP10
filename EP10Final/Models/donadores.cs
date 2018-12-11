@@ -11,7 +11,8 @@ namespace EP10Final.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class donadores
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,22 +20,34 @@ namespace EP10Final.Models
         {
             this.calculos = new HashSet<calculos>();
         }
-    
+        [DisplayName("Donador ID")]
         public int id_donador { get; set; }
+        [DisplayName("Donador")]
         public string nombre { get; set; }
+        [DisplayName("Aporte PIb")]
         public decimal aporte_pib { get; set; }
+        [DisplayName("Porcentaje")]
         public int id_porcentaje_donador { get; set; }
+        [DisplayName("Regalo")]
         public int id_producto_donador { get; set; }
+        [DisplayName("Fecha")]
         public Nullable<System.DateTime> fecha { get; set; }
+        [DisplayName("Pais")]
         public int id_pais_donador { get; set; }
+        [DisplayName("Continente")]
         public int id_continente_donador { get; set; }
+        [DisplayName("Total")]
         public Nullable<decimal> total { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<calculos> calculos { get; set; }
+        [DisplayName("Continente")]
         public virtual continente continente { get; set; }
+        [DisplayName("Pais")]
         public virtual pais pais { get; set; }
+        [DisplayName("Porcentaje")]
         public virtual porcentajes porcentajes { get; set; }
+        [DisplayName("Regalo")]
         public virtual productos productos { get; set; }
     }
 }

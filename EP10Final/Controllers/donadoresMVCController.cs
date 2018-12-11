@@ -62,6 +62,36 @@ namespace EP10Final.Controllers
             return View(donadores);
         }
 
+        // GET: donadoresMVC/Detalles/5
+        public ActionResult Detalle(int? id)
+        {
+            IEnumerable<donadores> alumno = null;
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:62116/api/");
+                //GET ALUMNOS
+                //obtiene asincronamente y espera hasta obetener la data
+                var responseTask = client.GetAsync("donadores");
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var leer = result.Content.ReadAsAsync<IList<donadores>>();
+                    leer.Wait();
+                    alumno = leer.Result;
+                }
+                else
+                {
+                    alumno = Enumerable.Empty<donadores>();
+                    ModelState.AddModelError(string.Empty, "Error .... Try Again");
+                }
+            }
+            return View(alumno.ToList());
+        }
+
+
+
         // GET: donadoresMVC/Create
         public ActionResult Create()
         {

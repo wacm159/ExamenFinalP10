@@ -11,7 +11,8 @@ namespace EP10Final.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+
     public partial class gasto
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,8 +20,9 @@ namespace EP10Final.Models
         {
             this.calculos = new HashSet<calculos>();
         }
-    
+        [DisplayName("Gasto ID")]
         public int id_gasto { get; set; }
+        [DisplayName("Gasto")]
         public string nombre { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

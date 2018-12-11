@@ -371,6 +371,7 @@
     <Content Include="Views\calculosMVC\Details.cshtml" />
     <Content Include="Views\calculosMVC\Edit.cshtml" />
     <Content Include="Views\calculosMVC\Index.cshtml" />
+    <Content Include="Views\donadoresMVC\Detalle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
